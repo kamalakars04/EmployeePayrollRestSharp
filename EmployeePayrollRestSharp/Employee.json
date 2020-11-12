@@ -24,25 +24,5 @@
       "salary": 550000,
       "id": 5
     },
-    {
-      "name": "Raja",
-      "salary": 15421,
-      "id": 6
-    },
-    {
-      "name": "Rani",
-      "salary": 52300,
-      "id": 7
-    },
-    {
-      "name": "Raja",
-      "salary": 15421,
-      "id": 8
-    },
-    {
-      "name": "Rani",
-      "salary": 52300,
-      "id": 9
-    }
   ]
 }
