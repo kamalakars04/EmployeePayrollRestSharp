@@ -33,7 +33,7 @@ namespace EmployeePayrollRestSharp
             employees.ForEach(employee => Console.WriteLine("Id: " + employee.id + " Name: " 
                                 + employee.name + " Salary: " + employee.salary));
             // Assert
-            Assert.AreEqual(3, employees.Count);
+            Assert.AreEqual(5, employees.Count);
         }
 
         private IRestResponse GetEmployeeList()
@@ -50,7 +50,7 @@ namespace EmployeePayrollRestSharp
         /// TC 2 Givens the employee on post should return added employee.
         /// </summary>
         [TestMethod]
-        public void givenEmployee_OnPost_ShouldReturnAddedEmployee()
+        public void GivenEmployee_OnPost_ShouldReturnAddedEmployee()
         {
             //adding multiple employees to list
             List<Employee> MultipleEmployeeList = new List<Employee>();
@@ -81,7 +81,33 @@ namespace EmployeePayrollRestSharp
                 Assert.AreEqual(employeeData.name, dataResponse.name);
                 Console.WriteLine(response.Content);
             });
+        }
 
+        [TestMethod]
+        public void GivenEmployee_OnUpdate_ShouldReturnUpdatedEmployee()
+        {
+            // Making a request for a particular employee to be updated
+            RestRequest request = new RestRequest("Employee/5", Method.PUT);
+
+            // Add data to JSON object
+            JObject jobject = new JObject();
+            jobject.Add("name", "Clark");
+            jobject.Add("salary", 550000);
+
+            // adding parameters in request
+            request.AddParameter("application/json", jobject, ParameterType.RequestBody);
+
+            // Execute the request
+            IRestResponse response = client.Execute(request);
+
+            // checking status code of response
+            Assert.AreEqual(response.StatusCode, System.Net.HttpStatusCode.OK);
+
+            // Deserializing the recieved data
+            Employee dataResponse = JsonConvert.DeserializeObject<Employee>(response.Content);
+
+            // Asserting for salary
+            Assert.AreEqual(dataResponse.salary, 550000);
         }
     }
 }
