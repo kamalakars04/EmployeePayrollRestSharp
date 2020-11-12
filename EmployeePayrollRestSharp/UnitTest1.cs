@@ -33,7 +33,7 @@ namespace EmployeePayrollRestSharp
             employees.ForEach(employee => Console.WriteLine("Id: " + employee.id + " Name: " 
                                 + employee.name + " Salary: " + employee.salary));
             // Assert
-            Assert.AreEqual(5, employees.Count);
+            Assert.AreEqual(10, employees.Count);
         }
 
         private IRestResponse GetEmployeeList()
@@ -84,6 +84,9 @@ namespace EmployeePayrollRestSharp
             });
         }
 
+        /// <summary>
+        /// TC 4 Givens the employee on update should return updated employee.
+        /// </summary>
         [TestMethod]
         public void GivenEmployee_OnUpdate_ShouldReturnUpdatedEmployee()
         {
@@ -109,6 +112,22 @@ namespace EmployeePayrollRestSharp
 
             // Asserting for salary
             Assert.AreEqual(dataResponse.salary, 550000);
+        }
+
+        /// <summary>
+        /// TC 5 Givens the employee on delete should return success status.
+        /// </summary>
+        [TestMethod]
+        public void GivenEmployee_OnDelete_ShouldReturnSuccessStatus()
+        {
+            // request for deleting elements from json 
+            RestRequest request = new RestRequest("Employee/4", Method.DELETE);
+
+            //executing request using rest client
+            IRestResponse response = client.Execute(request);
+
+            // checking status codes.
+            Assert.AreEqual(response.StatusCode, System.Net.HttpStatusCode.OK);
         }
     }
 }
