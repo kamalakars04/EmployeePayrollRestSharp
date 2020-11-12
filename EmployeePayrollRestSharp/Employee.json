@@ -13,6 +13,16 @@
     {
       "salary": "8000",
       "id": 3
+    },
+    {
+      "name": "Raja",
+      "salary": 15421,
+      "id": 4
+    },
+    {
+      "name": "Rani",
+      "salary": 52300,
+      "id": 5
     }
   ]
 }
