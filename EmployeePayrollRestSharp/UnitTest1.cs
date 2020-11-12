@@ -48,6 +48,7 @@ namespace EmployeePayrollRestSharp
 
         /// <summary>
         /// TC 2 Givens the employee on post should return added employee.
+        /// TC 3 Add Multiple employees
         /// </summary>
         [TestMethod]
         public void givenEmployee_OnPost_ShouldReturnAddedEmployee()
